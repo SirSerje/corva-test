@@ -1,5 +1,6 @@
 
 const reducer = (state={counter:0}, action) => {
+  console.warn(state,action);
   let counter = state.counter
   switch (action.type) {
     case 'INCREASE':

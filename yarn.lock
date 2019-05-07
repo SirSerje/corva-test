@@ -8175,6 +8175,11 @@ redux-socket.io-middleware@^1.0.4:
   resolved "https://registry.yarnpkg.com/redux-socket.io-middleware/-/redux-socket.io-middleware-1.0.4.tgz#5ab34821629383889fe871525d8c257f8416910b"
   integrity sha1-WrNIIWKTg4if6HFSXYwlf4QWkQs=
 
+redux-socket.io@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/redux-socket.io/-/redux-socket.io-1.4.0.tgz#28f5f8c47011bce809e2ab760f54891521219b54"
+  integrity sha1-KPX4xHARvOgJ4qt2D1SJFSEhm1Q=
+
 redux@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.1.tgz#436cae6cc40fbe4727689d7c8fae44808f1bfef5"

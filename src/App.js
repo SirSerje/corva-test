@@ -20,7 +20,7 @@ class App extends React.Component {
           <img src={logo} className="App-logo" alt="logo"/>
           <p>
             Edit <code>src/App.js</code> and save to reload.
-            {this.props.reducer.counter}
+            {/*{this.props.reducer.counter}*/}
           </p>
           <button onClick={() => this.props.actions.decrease()}>-</button>
           <button onClick={() => this.props.actions.increase()}>+</button>
