@@ -1,9 +1,9 @@
-var back = require('express')();
-var http = require('http').Server(back);
-var io = require('socket.io')(http);
-var randomNumber = require('./randomNumber');
+const back = require('express')();
+const http = require('http').Server(back);
+const io = require('socket.io')(http);
+const randomNumber = require('./randomNumber');
 
-var port = process.env.PORT || 3333;
+const port = process.env.PORT || 3333;
 
 back.get('/', function (req, res) {
   res.send('Use socket.io-client to connect to the server...');
@@ -12,10 +12,10 @@ back.get('/', function (req, res) {
 io.on('connection', function (socket) {
   console.log('connect');
 
-  var unsubscribe = randomNumber.subscribe(function (number) {
+  let unsubscribe = randomNumber.subscribe(function (number) {
     console.log(number);
 
-    var data = {
+    let data = {
       value: number,
       timestamp: Number(new Date()),
     };

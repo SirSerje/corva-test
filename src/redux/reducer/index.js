@@ -1,10 +1,9 @@
-const reducer = (state={counter:0}, action) => {
-  console.log('reducer: ', action.type)
+const reducer = (state = {items: []}, action) => {
   switch (action.type) {
     case 'DATA':
-      console.log(action.payload)
-      return state
-    
+      return {
+        ...state, items: [...state.items, action.payload],
+      }
     default:
       return state
   }
