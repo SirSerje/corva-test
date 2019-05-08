@@ -1,14 +1,10 @@
-
 const reducer = (state={counter:0}, action) => {
-  console.warn(state,action);
-  let counter = state.counter
+  console.log('reducer: ', action.type)
   switch (action.type) {
-    case 'INCREASE':
-      counter++
-      return {counter: counter}
-    case 'DECREASE':
-      counter --;
-      return {counter: counter}
+    case 'DATA':
+      console.log(action.payload)
+      return state
+    
     default:
       return state
   }

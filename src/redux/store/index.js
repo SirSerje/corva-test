@@ -4,20 +4,16 @@ import reducer from '../reducer'
 import { applyMiddleware, createStore } from 'redux'
 import { logger } from 'redux-logger'
 
-const some = () => {
-  const io = socketIO.connect(`http://localhost:3000`)
-  
-  io.on('data', function (socket) {
-    console.log('data has come', socket)
+const ioConnection = () => {
+  const io = socketIO.connect(`http://localhost:3333`)
+  io.on('action', (a) => {
+    console.warn('data', a);
   })
   return io
 }
 
-const store = createStore(
-  reducer,
-  applyMiddleware(
-    socketIoMiddleware(some(), logger),
-  ),
-)
+const io = ioConnection();
+const middleware = applyMiddleware(socketIoMiddleware(io, logger));
+const store = createStore(reducer, middleware)
 
 export default store

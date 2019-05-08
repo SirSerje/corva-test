@@ -41,13 +41,10 @@ class App extends React.Component {
 }
 
 function mapStateToProps (state) {
-  console.log('___', state)
   return state
 }
 
 function mapDispatchToProps (dispatch) {
-  console.log(actions)
-  
   return {
     actions: bindActionCreators(actions, dispatch),
   }
