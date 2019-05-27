@@ -3,9 +3,9 @@ const reducer = (state = {items: []}, action) => {
     case 'DATA':
       return {
         ...state, items: [...state.items, action.payload],
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
-export default reducer
+};
+export default reducer;
