@@ -5,24 +5,21 @@ import { bindActionCreators } from 'redux';
 import actions from './redux/actions';
 import * as am4core from '@amcharts/amcharts4/core';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
-import chart from './lineChart';
-import barChart from './barChart';
+import chart from './charts/lineChart';
+import barChart from './charts/barChart';
 
-
-am4core.useTheme(am4themes_animated);
-
-//FIXME: receive props early
 
 class App extends React.Component {
   
   componentDidMount () {
+    am4core.useTheme(am4themes_animated);
     this.chart = chart();
     this.barChart = barChart();
   }
   
-  componentDidUpdate (oldProps) {
-    //simple chart
-    this.chart.data = oldProps.items.map((i, idx) => {
+  shouldComponentUpdate (props) {
+    //line chart
+    const lineChartData = props.items.map((i, idx) => {
       return {
         date: new Date(i.timestamp),
         name: 'name' + idx,
@@ -34,14 +31,21 @@ class App extends React.Component {
     let barChartData = [];
     for (let range = -100; range < 100; range += 20) {
       let current = 0;
-      oldProps.items.map(i => (i.value >= range && i.value < (range + 20))
+      props.items.map(i => (i.value >= range && i.value < (range + 20))
         ? current++
         : current);
       barChartData.push(
         {'value': `${range} - ${range + 20}`, 'quantity': current});
     }
     
-    this.barChart.data = barChartData;
+    if (this.barChart.data.length !== barChartData.length ||
+      this.chart.data.length !== lineChartData.length) {
+      
+      this.barChart.data = barChartData;
+      this.chart.data = lineChartData;
+      
+      return true;
+    } else return false;
   }
   
   componentWillUnmount () {
@@ -50,9 +54,7 @@ class App extends React.Component {
   }
   
   render () {
-    
     return (
-      
       <div className="App">
         <header className="App-header">
           <div id="chartdiv" style={{width: '50%', height: '500px'}}/>
@@ -61,7 +63,6 @@ class App extends React.Component {
       </div>
     );
   }
-  
 }
 
 function mapStateToProps (state) {

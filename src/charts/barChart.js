@@ -1,22 +1,18 @@
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 
-//TODO: update this moves
-let rangeY = [];
+
+let range = [];
 for (let i = -100; i <= 100; i += 20) {
-  rangeY.push(i);
+  range.push({'value': i, 'quantity': 0});
 }
-let a = rangeY.map(i => {
-  return {'value': i, 'quantity': Math.round(Math.random() * 15)};
-});
 
 const barChart = () => {
-
 // Create chart instance
   var chart = am4core.create('chartdivBar', am4charts.XYChart);
 
 // Add data
-  chart.data = a;
+  chart.data = range;
 
 // Create axes
   
