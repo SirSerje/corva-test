@@ -9,7 +9,7 @@ const barChart = () => {
 
 // Add default data
   let range = [];
-  for (let i = -MIN_VALUE; i <= MAX_VALUE; i += STEP) {
+  for (let i = MIN_VALUE; i <= MAX_VALUE; i += STEP) {
     range.push({'value': i, 'quantity': 0});
   }
   chart.data = range;
