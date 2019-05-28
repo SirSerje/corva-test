@@ -7,6 +7,7 @@ import * as am4core from '@amcharts/amcharts4/core';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import chart from './charts/lineChart';
 import barChart from './charts/barChart';
+import { MAX_VALUE, MIN_VALUE, STEP } from './charts/config';
 
 
 class App extends React.Component {
@@ -29,13 +30,13 @@ class App extends React.Component {
     
     //bar chart
     let barChartData = [];
-    for (let range = -100; range < 100; range += 20) {
+    for (let range = MIN_VALUE; range < MAX_VALUE; range += STEP) {
       let current = 0;
-      props.items.map(i => (i.value >= range && i.value < (range + 20))
+      props.items.map(i => (i.value >= range && i.value < (range + STEP))
         ? current++
         : current);
       barChartData.push(
-        {'value': `${range} - ${range + 20}`, 'quantity': current});
+        {'value': `${range} - ${range + STEP}`, 'quantity': current});
     }
     
     if (this.barChart.data.length !== barChartData.length ||

@@ -1,5 +1,6 @@
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
+import { MAX_VALUE, MIN_VALUE, STEP } from './config';
 
 
 const barChart = () => {
@@ -8,7 +9,7 @@ const barChart = () => {
 
 // Add default data
   let range = [];
-  for (let i = -100; i <= 100; i += 20) {
+  for (let i = -MIN_VALUE; i <= MAX_VALUE; i += STEP) {
     range.push({'value': i, 'quantity': 0});
   }
   chart.data = range;
