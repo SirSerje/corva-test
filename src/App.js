@@ -21,7 +21,7 @@ class App extends React.Component {
   }
   
   componentDidUpdate (oldProps) {
-    // console.warn(oldProps.items)
+    //simple chart
     this.chart.data = oldProps.items.map((i, idx) => {
       return {
         date: new Date(i.timestamp),
@@ -30,13 +30,18 @@ class App extends React.Component {
       };
     });
     
-    this.barChart.data = oldProps.items.map((i, idx) => {
-      return {
-        date: new Date(i.timestamp),
-        country: 'name' + idx,
-        visits: i.value,
-      };
-    });
+    //bar chart
+    let barChartData = [];
+    for (let range = -100; range < 100; range += 20) {
+      let current = 0;
+      oldProps.items.map(i => (i.value >= range && i.value < (range + 20))
+        ? current++
+        : current);
+      barChartData.push(
+        {'value': `${range} - ${range + 20}`, 'quantity': current});
+    }
+    
+    this.barChart.data = barChartData;
   }
   
   componentWillUnmount () {
@@ -52,7 +57,6 @@ class App extends React.Component {
         <header className="App-header">
           <div id="chartdiv" style={{width: '50%', height: '500px'}}/>
           <div id="chartdivBar" style={{width: '50%', height: '500px'}}/>
-          {/*{this.props.items.map((i, idx) => <i key={idx}>{i.value}</i>)}*/}
         </header>
       </div>
     );
