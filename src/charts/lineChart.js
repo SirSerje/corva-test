@@ -3,17 +3,11 @@ import * as am4charts from '@amcharts/amcharts4/charts';
 
 
 const chart = () => {
-  
   let chart = am4core.create('chartdiv', am4charts.XYChart);
-  
   chart.paddingRight = 20;
-  
-  let data = [];
-  
-  chart.data = data;
-  
+  chart.data = [];
+
   let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-  // dateAxis.renderer.grid.template.location = 0;
   
   let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
   valueAxis.min = -100;
@@ -26,7 +20,6 @@ const chart = () => {
   series.dataFields.valueY = 'value';
   
   series.tooltipText = '{value}';
-// series.tooltipText = '{valueY.value}'
   chart.cursor = new am4charts.XYCursor();
   
   let bullet = series.bullets.push(new am4charts.CircleBullet());

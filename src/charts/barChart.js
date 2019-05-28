@@ -2,20 +2,18 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 
 
-let range = [];
-for (let i = -100; i <= 100; i += 20) {
-  range.push({'value': i, 'quantity': 0});
-}
-
 const barChart = () => {
 // Create chart instance
   var chart = am4core.create('chartdivBar', am4charts.XYChart);
 
-// Add data
+// Add default data
+  let range = [];
+  for (let i = -100; i <= 100; i += 20) {
+    range.push({'value': i, 'quantity': 0});
+  }
   chart.data = range;
 
 // Create axes
-  
   var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
   categoryAxis.dataFields.category = 'value';
   categoryAxis.renderer.grid.template.location = 0;

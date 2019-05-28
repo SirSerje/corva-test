@@ -1,11 +1,11 @@
-const back = require('express')();
-const http = require('http').Server(back);
+const index = require('express')();
+const http = require('http').Server(index);
 const io = require('socket.io')(http);
 const randomNumber = require('./randomNumber');
 
 const port = process.env.PORT || 3333;
 
-back.get('/', function (req, res) {
+index.get('/', function (req, res) {
   res.send('Use socket.io-client to connect to the server...');
 });
 
