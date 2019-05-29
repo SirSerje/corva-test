@@ -18,7 +18,7 @@ class App extends React.Component {
     this.barChart = barChart();
   }
   
-  componentWillReceiveProps (props) {
+  shouldComponentUpdate (props) {
     //line chart
     const lineChartData = props.items.map((i, idx) => {
       return {
